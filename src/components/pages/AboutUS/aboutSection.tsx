@@ -1,0 +1,100 @@
+export default function AboutMainSection() {
+  return (
+    <main className="w-full bg-white">
+      {/* Hero Section */}
+      <section className="max-w-6xl mx-auto px-6 py-16 text-center">
+        <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium">
+          ⚡ Powered by Advanced AI Technology
+        </span>
+
+        <h1 className="mt-6 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+          អ្នកជំនួយការបញ្ញាសិប្បនិម្មិត AI
+        </h1>
+
+        <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          ប្រព័ន្ធជំនួយឆ្លាតវៃដោយប្រើបច្ចេកវិទ្យាបញ្ញាសិប្បនិម្មិត (AI)
+          សម្រាប់ជួយស្រាវជ្រាវ កែសម្រួលអត្ថបទ
+          និងជួយលើកកម្ពស់គុណភាពការសរសេរ និងការសិក្សា។
+        </p>
+
+        <button className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-700 text-white font-medium hover:bg-green-800 transition">
+          ចាប់ផ្តើម →
+        </button>
+      </section>
+
+      {/* Feature Cards */}
+      <section className="max-w-6xl mx-auto px-6 py-10">
+        <h2 className="text-2xl font-bold text-center mb-10">
+          អត្ថប្រយោជន៍នៃការប្រើប្រាស់ប្រព័ន្ធ
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Card 1 */}
+          <div className="border rounded-xl p-6 shadow-sm hover:shadow-md transition">
+            <h3 className="text-green-700 font-semibold text-lg mb-3">
+              📘 សរសេរអត្ថបទស្រាវជ្រាវ
+            </h3>
+
+            <p className="text-gray-600 mb-4">
+              ជួយក្នុងការសរសេរ និងកែសម្រួលអត្ថបទស្រាវជ្រាវ
+              ដោយប្រើ AI ដើម្បីធានាគុណភាព និងភាពត្រឹមត្រូវ។
+            </p>
+
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li>✔️ ជំនួយ AI ឆ្លាតវៃ</li>
+              <li>✔️ កាត់បន្ថយពេលវេលា</li>
+              <li>✔️ កែសម្រួលអត្ថបទ</li>
+            </ul>
+
+            <button className="mt-6 w-full py-2 rounded-full bg-green-700 text-white hover:bg-green-800 transition">
+              ប្រើប្រាស់ប្រព័ន្ធនេះ
+            </button>
+          </div>
+
+          {/* Card 2 */}
+          <div className="border rounded-xl p-6 shadow-sm hover:shadow-md transition">
+            <h3 className="text-green-700 font-semibold text-lg mb-3">
+              🅰️ កែសម្រួលភាសា
+            </h3>
+
+            <p className="text-gray-600 mb-4">
+              កែសម្រួលអក្ខរាវិរុទ្ធ វេយ្យាករណ៍
+              និងសម្រួលភាសាឱ្យមានភាពច្បាស់លាស់។
+            </p>
+
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li>✔️ កែអក្ខរាវិរុទ្ធ</li>
+              <li>✔️ កែវេយ្យាករណ៍</li>
+              <li>✔️ បង្កើនភាពច្បាស់</li>
+            </ul>
+
+            <button className="mt-6 w-full py-2 rounded-full bg-green-700 text-white hover:bg-green-800 transition">
+              ចាប់ផ្តើមប្រើ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Information Section */}
+      <section className="max-w-6xl mx-auto px-6 py-14">
+        <div className="bg-blue-50 rounded-2xl p-8 text-center">
+          <h3 className="text-xl font-bold text-blue-800 mb-4">
+            📘 អំពីប្រព័ន្ធ
+          </h3>
+
+          <p className="text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            ប្រព័ន្ធនេះត្រូវបានបង្កើតឡើងដើម្បីគាំទ្រការសិក្សា
+            ការស្រាវជ្រាវ និងការសរសេរផ្លូវការនៅក្នុងស្ថាប័នអប់រំ
+            ដោយផ្តល់នូវជំនួយឆ្លាតវៃ សុវត្ថិភាព និងទំនុកចិត្ត។
+          </p>
+
+          <div className="flex justify-center gap-10 mt-6 text-sm text-gray-700">
+            <span>🛡️ សុវត្ថិភាព</span>
+            <span>⚡ ប្រសិទ្ធភាព</span>
+            <span>📖 គាំទ្រការសិក្សា</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
