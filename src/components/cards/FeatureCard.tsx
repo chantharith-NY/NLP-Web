@@ -12,23 +12,56 @@ export default function FeatureCard({
   href,
 }: FeatureCardProps) {
   return (
-    <div className="relative bg-white rounded-xl shadow hover:shadow-md transition p-4">
-      {/* External link icon */}
-      {href && (
-        <a
-          href={href}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-        >
-          ↗
-        </a>
-      )}
+    <div
+      className="
+        relative
+        bg-white
+        rounded-2xl
+        overflow-hidden
+        w-60
+        h-60
+        flex flex-col
+        transition
+        shadow-[4px_6px_16px_rgba(0,0,0,0.10)]
+        hover:shadow-[6px_10px_20px_rgba(0,0,0,0.16)]
+      "
+    >
+      {/* Image */}
+      <div className="relative h-40">
+        <img
+          src={icon}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
 
-      <img src={icon} alt={title} className="w-14 h-14 mb-3" />
+        {href && (
+          <a
+            href={href}
+            className="
+              absolute top-3 right-3
+              w-9 h-9
+              rounded-full
+              bg-white
+              flex items-center justify-center
+              shadow
+              hover:bg-gray-100
+            "
+          >
+            ↗
+          </a>
+        )}
+      </div>
 
-      <h3 className="font-semibold text-sm mb-1">{title}</h3>
-      <p className="text-xs text-gray-600 leading-relaxed">
-        {description}
-      </p>
+      {/* Content */}
+      <div className="py-1 px-2 flex flex-col flex-1">
+        <p className="font-moul text-[11px] text-[#6E8122] font-semibold mb-1">
+          {title}
+        </p>
+
+        <p className="font-battambang text-[9px] text-gray-700 leading-relaxed line-clamp-3">
+          {description}
+        </p>
+      </div>
     </div>
   )
 }
