@@ -37,7 +37,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           </div>
           {/* Text */}
           <div className="grid grid-rows-2 text-left items-center space-y-1">
-            <p className="text-white font-semibold text-xs font-moulpali">រាជបណ្ឌិតសភាកម្ពុជា</p>
+            <p className="text-white font-semibold text-sm font-moulpali">រាជបណ្ឌិតសភាកម្ពុជា</p>
             <p className="text-white font-semibold text-xs font-inria-serif">Royal Academy of Cambodia</p>
           </div>
           {/* Menu Button */}

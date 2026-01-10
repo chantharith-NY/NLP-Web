@@ -1,5 +1,5 @@
 import AppLayout from "./layouts/AppLayout"
-import Dashboard from "./components/pages/Dashboard/Dashboard"
+// import Dashboard from "./components/pages/Dashboard/Dashboard"
 import About from "./components/pages/AboutUS/About"
 import HomePage from "./components/pages/Home/HomePage"
 
