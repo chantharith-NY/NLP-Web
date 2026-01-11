@@ -19,7 +19,7 @@ export default function FeatureCard({
         rounded-2xl
         overflow-hidden
         w-60
-        h-60
+        h-68
         flex flex-col
         transition
         shadow-[4px_6px_16px_rgba(0,0,0,0.10)]
@@ -54,11 +54,11 @@ export default function FeatureCard({
 
       {/* Content */}
       <div className="py-1 px-2 flex flex-col flex-1">
-        <p className="font-moul text-[11px] text-[#6E8122] font-semibold mb-1">
+        <p className="font-moul text-[16px] text-[#6E8122] font-semibold mb-1">
           {title}
         </p>
 
-        <p className="font-battambang text-[9px] text-gray-700 leading-relaxed line-clamp-3">
+        <p className="font-battambang text-[14px] text-gray-700 leading-relaxed line-clamp-3">
           {description}
         </p>
       </div>
