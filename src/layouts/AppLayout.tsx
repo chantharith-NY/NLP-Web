@@ -1,9 +1,11 @@
 import { useState } from "react"
-import type { ReactNode } from "react"
+import { Outlet } from "react-router-dom"
+// import type { ReactNode } from "react"
 import Sidebar from "./Sidebar"
 import Header from "./Header"
+import Footer from "./Footer"
 
-export default function AppLayout({ children }: { children: ReactNode }) {
+export default function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -24,7 +26,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       {/* ===== SIDEBAR (FIXED) ===== */}
       <div
         className={`
-          fixed top-0 left-0 h-screen z-40
+          fixed top-0 left-0 h-screen z-20
           transition-all duration-300 ease-out
           ${sidebarOpen
             ? "scale-100 opacity-100"
@@ -38,7 +40,9 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       {sidebarOpen && (
         <div
           className="
-            fixed inset-0 z-35
+            fixed inset-y-0 right-0
+            left-80 md:left-87.5
+            z-35
             bg-transparent
             pointer-events-auto
           "
@@ -49,17 +53,25 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       {/* ===== MAIN CONTENT (SCROLLS, DOES NOT CLOSE) ===== */}
       <main
         className={`
-          min-h-screen
-          transition-all duration-300 ease-out
-          ${sidebarOpen ? "ml-[320px]" : ""}
-          mt-[108px]
-          p-6
-          overflow-y-auto
-          relative z-10
+            min-h-screen
+            transition-all duration-300 ease-out
+            ${sidebarOpen ? "ml-80" : ""}
+            mt-27
+            overflow-y-auto
+            relative z-10
         `}
       >
-        {children}
+        <div
+          className={`
+            p-6
+          `}
+        >
+          <Outlet />
+        </div>
+        
+        <Footer />
       </main>
+
     </div>
   )
 }

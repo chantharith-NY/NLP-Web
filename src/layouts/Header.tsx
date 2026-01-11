@@ -31,6 +31,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
           flex items-center justify-between
           rounded-4xl px-3 py-2
           max-w-fit
+          space-x-2
         "
       >
         {/* Logo */}
@@ -53,7 +54,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
           `}
         >
           <p className="text-white font-semibold text-base font-moulpali">
-            រាជបណ្ឌិតសភាកម្ពុជា
+            រាជបណ្ឌិត្យសភាកម្ពុជា
           </p>
           <p className="text-white font-semibold text-base font-inria-serif">
             Royal Academy of Cambodia

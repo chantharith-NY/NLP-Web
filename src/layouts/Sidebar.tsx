@@ -21,7 +21,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
       <aside
         className={`
           fixed md:static top-0 left-0 z-50
-          w-[320px] md:w-[350px] min-h-screen
+          w-[320px] md:w-87.5 min-h-screen
           bg-[#8BAD13] text-white
           transform transition-transform duration-300
           ${open ? "translate-x-0" : "-translate-x-full"}
@@ -37,7 +37,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           </div>
           {/* Text */}
           <div className="grid grid-rows-2 text-left items-center space-y-1">
-            <p className="text-white font-semibold text-sm font-moulpali">រាជបណ្ឌិតសភាកម្ពុជា</p>
+            <p className="text-white font-semibold text-sm font-moulpali">រាជបណ្ឌិត្យសភាកម្ពុជា</p>
             <p className="text-white font-semibold text-xs font-inria-serif">Royal Academy of Cambodia</p>
           </div>
           {/* Menu Button */}
@@ -58,7 +58,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
       {/* Welcome */}
       <div className="px-6 mt-4">
         <h2 className="text-lg font-semibold">Welcome Back!</h2>
-        <div className="h-[1px] bg-white/50 mt-2 mb-4" />
+        <div className="h-px bg-white/50 mt-2 mb-4" />
 
         {/* Cards */}
         <div className="grid grid-cols-2 gap-4">
@@ -76,9 +76,13 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
 
       {/* Tools */}
       <Section title="Tools">
-        <HistoryItem />
-        <HistoryItem />
+        <ToolLink
+          text="Text Summary"
+          to="/tools/text-summary"
+          onClick={onClose}
+        />
       </Section>
+
 
       {/* Footer */}
       <div className="mt-auto px-6 pb-6">
@@ -90,7 +94,6 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           <a ><i className="fa-brands fa-telegram"></i></a>
           <a ><i className="fa-brands fa-facebook"></i></a>
           <a ><i className="fa-brands fa-github"></i></a>
-          {/* <span>✖️</span> */}
         </div>
       </div>
       </aside>
@@ -108,7 +111,7 @@ function Section({
   return (
     <div className="px-6 mt-6">
       <p className="font-medium">{title}</p>
-      <div className="h-[1px] bg-white/50 mt-2 mb-4" />
+      <div className="h-px bg-white/50 mt-2 mb-4" />
       <div className="space-y-3">{children}</div>
     </div>
   )
@@ -163,5 +166,33 @@ function FooterLink({
         </span>
       </Link>
     </div>
+  )
+}
+
+function ToolLink({
+  text,
+  to,
+  onClick,
+}: {
+  text: string
+  to: string
+  onClick?: () => void
+}) {
+  const location = useLocation()
+  const isActive = location.pathname === to
+
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`
+        block px-2 py-1 rounded-md text-sm cursor-pointer transition
+        ${isActive
+          ? "bg-white/20 text-white font-semibold"
+          : "text-white/80 hover:bg-white/10 hover:text-white"}
+      `}
+    >
+      {text}
+    </Link>
   )
 }
