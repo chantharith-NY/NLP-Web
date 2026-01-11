@@ -1,19 +1,19 @@
-import AppLayout from "./layouts/AppLayout"
-// import Dashboard from "./components/pages/Dashboard/Dashboard"
-import About from "./components/pages/AboutUS/About"
-import HomePage from "./components/pages/Home/HomePage"
-
 import { Routes, Route } from "react-router-dom"
+import AppLayout from "./layouts/AppLayout"
+
+import HomePage from "./components/pages/Home/HomePage"
+import About from "./components/pages/AboutUS/About"
+import TextSummaryPage from "./components/pages/TextSummary/TextSummaryPage"
 
 export default function App() {
   return (
-    <AppLayout>
-      <Routes>
-        {/* <Route path="/" element={<Dashboard />} /> */}
+    <Routes>
+      {/* Main layout */}
+      <Route element={<AppLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
-      </Routes>
-      {/* <Dashboard /> */}
-    </AppLayout>
+        <Route path="/tools/text-summary" element={<TextSummaryPage />} />
+      </Route>
+    </Routes>
   )
 }
