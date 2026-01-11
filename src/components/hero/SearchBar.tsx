@@ -78,7 +78,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="mt-8 max-w-3xl mx-auto bg-[#F2F2F2] rounded-xl shadow-lg px-4 py-3">
+    <div className="mt-8 max-w-5xl mx-auto bg-[#F2F2F2] rounded-xl shadow-lg px-4 py-3">
 
       {/* Row 1 */}
       <input
@@ -87,7 +87,7 @@ export default function SearchBar() {
         className="w-full outline-none text-sm text-gray-700 pb-3"
       />
 
-      <div className="h-[1px] bg-gray-200 mb-2" />
+      <div className="h-px bg-gray-200 mb-2" />
 
       {/* Row 2 */}
       <div className="flex items-center justify-between">

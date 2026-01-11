@@ -9,9 +9,9 @@ export default function HeroSection() {
             className="mx-auto h-45 mb-4"
         />
         
-        <div className="space-y-4">
+        <div className="space-y-1">
             <p className="font-moulpali text-3xl py-3">
-                រាជបណ្ឌិតសភាកម្ពុជា
+                រាជបណ្ឌិត្យសភាកម្ពុជា
             </p>
             <p className="font-inria-serif text-[30px] text-black font-bold">
                 Royal Academy of Cambodia
