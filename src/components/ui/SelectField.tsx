@@ -47,7 +47,7 @@ export default function SelectField({
   return (
     <div className="relative space-y-1" ref={ref}>
       {label && (
-        <label className="text-sm font-semibold text-gray-700">
+        <label className="font-semibold text-gray-700">
           {label}
         </label>
       )}
@@ -108,7 +108,7 @@ export default function SelectField({
 
                     ${
                     active
-                        ? "bg-blue-800 text-white"
+                        ? "bg-[#003B77] text-white"
                         : "bg-white text-gray-700 hover:bg-blue-50"
                     }
                 `}
