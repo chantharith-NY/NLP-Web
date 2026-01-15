@@ -4,6 +4,7 @@ import AppLayout from "./layouts/AppLayout"
 import HomePage from "./components/pages/Home/HomePage"
 import About from "./components/pages/AboutUS/About"
 import TextSummaryPage from "./components/pages/TextSummary/TextSummaryPage"
+import SpellCheckPage from "./components/pages/SpellCheck/SpellCheckPage"
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/tools/text-summary" element={<TextSummaryPage />} />
+        <Route path="/tools/spell-check" element={<SpellCheckPage />} />
       </Route>
     </Routes>
   )
