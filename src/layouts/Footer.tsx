@@ -22,23 +22,23 @@ export default function Footer() {
 
           {/* Column 2: Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">
-              Quick Links
+            <h4 className="font-semibold text-lg mb-4 font-moul">
+              តំណភ្ជាប់រហ័ស
             </h4>
-            <ul className="space-y-2 text-base">
+            <ul className="space-y-2 text-base font-battambang">
               <li>
                 <Link to="/" className="hover:underline">
-                  Home
+                  ទំព័រដើម
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="hover:underline">
-                  About Us
+                  អំពីពួកយើង
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="hover:underline">
-                  Contact
+                  ទំនាក់ទំនង
                 </Link>
               </li>
             </ul>
@@ -46,8 +46,8 @@ export default function Footer() {
 
           {/* Column 3: Contact */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">
-              Contact
+            <h4 className="font-semibold text-lg mb-4​ font-moul">
+              ទំនាក់ទំនង
             </h4>
 
             <div className="space-y-3 text-sm">
@@ -90,8 +90,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/30 mt-10 pt-6 text-center text-sm text-white/90">
-          © 2025 Royal Academy of Cambodia. All rights reserved.
+        <div className="border-t border-white/30 mt-10 pt-6 text-center ">
+          <p className="text-sm text-white/90"><span className="font-inter">© 2025</span> <span className="font-moul">រាជបណ្ឌិត្យសភាកម្ពុជា សិទ្ធិគ្រប់យ៉ាងបានរក្សាទុក។</span></p>
         </div>
       </div>
     </footer>

@@ -28,36 +28,51 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           md:translate-x-0
         `}
       >
-    {/* Header / Logo */}
+      {/* Header / Logo */}
       <div className="px-6 pt-6 pb-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <img src="/rac-logo.png" alt="Logo" className="w-13" />
-          </div>
-          {/* Text */}
-          <div className="grid grid-rows-2 text-left items-center space-y-1">
-            <p className="text-white font-semibold text-sm font-moulpali">រាជបណ្ឌិត្យសភាកម្ពុជា</p>
-            <p className="text-white font-semibold text-xs font-inria-serif">Royal Academy of Cambodia</p>
-          </div>
+          {/* Logo + Text (Clickable → Home) */}
+          <Link
+            to="/"
+            onClick={onClose}
+            className="flex items-center gap-3 cursor-pointer group"
+          >
+            <img
+              src="/rac-logo.png"
+              alt="RAC Logo"
+              className="w-13"
+            />
+
+            <div className="grid grid-rows-2 text-left space-y-1">
+              <p className="text-white font-semibold text-sm font-moulpali group-hover:text-gray-200">
+                រាជបណ្ឌិត្យសភាកម្ពុជា
+              </p>
+              <p className="text-white font-semibold text-xs font-inria-serif group-hover:text-gray-200">
+                Royal Academy of Cambodia
+              </p>
+            </div>
+          </Link>
+
           {/* Menu Button */}
-          <div className="flex items-center justify-center">
-            <a
-              onClick={onClose}
-              className="group focus:outline-none "
-            >
-              <Menu className="text-white ml-4 mr-4 
-                              transition-colors duration-200
-                              group-hover:text-gray-300
-                              active:text-gray-400" />
-            </a>
-          </div>
+          <button
+            onClick={onClose}
+            className="group focus:outline-none"
+          >
+            <Menu
+              className="
+                text-white ml-4 mr-4
+                transition-colors duration-200
+                group-hover:text-gray-300
+                active:text-gray-400
+              "
+            />
+          </button>
         </div>
       </div>
 
       {/* Welcome */}
       <div className="px-6 mt-4">
-        <h2 className="text-lg font-semibold">Welcome Back!</h2>
+        <p className="text-lg font-moul">សូមស្វាគមន៍</p>
         <div className="h-px bg-white/50 mt-2 mb-4" />
 
         {/* Cards */}
@@ -68,21 +83,21 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
       </div>
 
       {/* History */}
-      <Section title="Your History">
+      <Section title="ប្រវត្តិ">
         <HistoryItem />
         <HistoryItem />
         <HistoryItem />
       </Section>
 
       {/* Tools */}
-      <Section title="Tools">
+      <Section title="ឧបករណ៍">
         <ToolLink
-          text="Text Summary"
+          text="សង្ខេបអត្ថបទ"
           to="/tools/text-summary"
           onClick={onClose}
         />
         <ToolLink
-          text="Spell Check"
+          text="ពិនិត្យអក្ខរាវិរុទ្ធ"
           to="/tools/spell-check"
           onClick={onClose}
         />
@@ -91,14 +106,34 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
 
       {/* Footer */}
       <div className="mt-auto px-6 pb-6">
-        <FooterLink text="Home" to="/" onClick={onClose} />
-        <FooterLink text="About Us" to="/about" onClick={onClose} />
-        <FooterLink text="Contact" to="/contact" onClick={onClose} />
+        <FooterLink text="ទំព័រដើម" to="/" onClick={onClose} />
+        <FooterLink text="អំពីពួកយើង" to="/about" onClick={onClose} />
+        {/* <FooterLink text="ទំនាក់ទំនង" to="/contact" onClick={onClose} /> */}
 
-        <div className="flex gap-4 mt-4 text-lg ">
-          <a ><i className="fa-brands fa-telegram"></i></a>
-          <a ><i className="fa-brands fa-facebook"></i></a>
-          <a ><i className="fa-brands fa-github"></i></a>
+        <div className="flex gap-4 mt-4 text-lg">
+          <a
+            href="https://t.me/yourusername"
+            target="_blank"
+            className="text-white hover:text-[#229ED9] transition cursor-pointer"
+          >
+            <i className="fa-brands fa-telegram"></i>
+          </a>
+
+          <a
+            href="https://facebook.com/yourpage"
+            target="_blank"
+            className="text-white hover:text-[#1877F2] transition cursor-pointer"
+          >
+            <i className="fa-brands fa-facebook"></i>
+          </a>
+
+          <a
+            href="https://github.com/yourusername"
+            target="_blank"
+            className="text-white hover:text-black transition cursor-pointer"
+          >
+            <i className="fa-brands fa-github"></i>
+          </a>
         </div>
       </div>
       </aside>
@@ -115,7 +150,7 @@ function Section({
 }) {
   return (
     <div className="px-6 mt-6">
-      <p className="font-medium">{title}</p>
+      <p className="font-medium text-lg font-moul">{title}</p>
       <div className="h-px bg-white/50 mt-2 mb-4" />
       <div className="space-y-3">{children}</div>
     </div>
@@ -147,9 +182,9 @@ function FooterLink({
         onClick={onClick}
         className={`
           relative group
-          border-b pb-1 block cursor-pointer transition
+          border-b pb-1 block cursor-pointer transition font-moul
           ${isActive
-            ? "border-white text-white font-semibold"
+            ? "border-white text-white font-medium"
             : "border-white/50 text-white/80 hover:text-white"}
         `}
       >
@@ -191,9 +226,9 @@ function ToolLink({
       to={to}
       onClick={onClick}
       className={`
-        block px-2 py-1 rounded-md text-sm cursor-pointer transition
+        block px-2 py-1 rounded-md text-base cursor-pointer transition font-battambang
         ${isActive
-          ? "bg-white/20 text-white font-semibold"
+          ? "bg-white/20 text-white font-medium"
           : "text-white/80 hover:bg-white/10 hover:text-white"}
       `}
     >

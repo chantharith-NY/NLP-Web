@@ -12,8 +12,8 @@ export default function StatsBar({ stats }: StatsBarProps) {
     <div className="bg-gray-50 rounded-xl p-4 grid grid-cols-3 text-center text-sm">
       {stats.map((stat, index) => (
         <div key={index}>
-          <p className="font-semibold">{stat.value}</p>
-          <p className="text-gray-500">{stat.label}</p>
+          <p className="font-medium font-battambang text-lg">{stat.value}</p>
+          <p className="text-gray-500 font-battambang">{stat.label}</p>
         </div>
       ))}
     </div>

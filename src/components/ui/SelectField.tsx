@@ -2,16 +2,16 @@ import type { ReactNode } from "react"
 import { useEffect, useRef, useState } from "react"
 import { ChevronDown, Check } from "lucide-react"
 
-interface SelectOption {
+interface SelectOption<T extends string> {
   label: string
-  value: string
+  value: T
 }
 
-interface SelectFieldProps {
+interface SelectFieldProps<T extends string> {
   label?: string
-  value: string
-  options: SelectOption[]
-  onChange: (value: string) => void
+  value: T
+  options: SelectOption<T>[]
+  onChange: (value: T) => void
 
   placeholder?: string
   error?: string
@@ -20,14 +20,14 @@ interface SelectFieldProps {
   size?: "sm" | "md" | "lg"
 }
 
-export default function SelectField({
+export default function SelectField<T extends string>({
   label,
   value,
   options,
   onChange,
   icon,
   placeholder = "Select option",
-}: SelectFieldProps) {
+}: SelectFieldProps<T>) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -47,7 +47,7 @@ export default function SelectField({
   return (
     <div className="relative space-y-1" ref={ref}>
       {label && (
-        <label className="font-semibold font-battambang">
+        <label className="font-medium font-battambang">
           {label}
         </label>
       )}
@@ -65,7 +65,7 @@ export default function SelectField({
       >
         <div className="flex items-center gap-2">
           {icon}
-          <span className={selected ? "text-gray-800" : "text-gray-400"}>
+          <span className={`font-battambang ${selected ? "text-gray-800" : "text-gray-400"}`}>
             {selected?.label || placeholder}
           </span>
         </div>
@@ -79,47 +79,40 @@ export default function SelectField({
       {/* Dropdown */}
       {open && (
         <div
-            className="
+          className="
             absolute left-0 top-full mt-1
-            w-full
-            rounded-md
-            border
-            bg-white
-            shadow-lg
-            z-50
-            overflow-hidden
-            "
+            w-full rounded-md border
+            bg-white shadow-lg z-50 overflow-hidden
+          "
         >
-            {options.map((opt) => {
+          {options.map((opt) => {
             const active = value === opt.value
 
             return (
-                <button
+              <button
                 key={opt.value}
                 onClick={() => {
-                    onChange(opt.value)
-                    setOpen(false)
+                  onChange(opt.value)
+                  setOpen(false)
                 }}
                 className={`
-                    w-full flex items-center justify-between
-                    px-3 py-2 text-sm text-left
-                    transition
-                    border-b last:border-b-0
-
-                    ${
+                  w-full flex items-center justify-between
+                  px-3 py-2 text-sm text-left
+                  transition border-b last:border-b-0
+                  ${
                     active
-                        ? "bg-[#003B77] text-white"
-                        : "bg-white text-gray-700 hover:bg-blue-50"
-                    }
+                      ? "bg-[#003B77] text-white"
+                      : "bg-white text-gray-700 hover:bg-blue-50"
+                  }
                 `}
-                >
+              >
                 <span>{opt.label}</span>
                 {active && <Check size={14} />}
-                </button>
+              </button>
             )
-            })}
+          })}
         </div>
-        )}
+      )}
     </div>
   )
 }

@@ -9,7 +9,7 @@ interface TextInputCardProps {
 }
 
 export default function TextInputCard({
-  title = "Khmer Text",
+  title = "អត្ថបទបញ្ចូល",
   value,
   placeholder = "សូមបញ្ចូលអត្ថបទ...",
   onChange,
@@ -19,9 +19,9 @@ export default function TextInputCard({
     <div className="bg-white px-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
-        <h3 className="font-semibold font-inter text-xl">
+        <p className="font-semibold font-moul text-xl">
           {title}
-        </h3>
+        </p>
 
         {onClear && (
           <X
@@ -40,8 +40,8 @@ export default function TextInputCard({
       />
 
       {/* Character count */}
-      <div className="text-right text-xs text-gray-400 mt-1">
-        {value.length} characters
+      <div className="text-right text-sm text-gray-400 mt-1 font-battambang">
+        {value.length} តួអក្សរ
       </div>
     </div>
   )

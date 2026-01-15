@@ -33,23 +33,26 @@ export default function FeatureCard({
       </ul>
 
       {/* Action button (always bottom) */}
-    <button
-        onClick={onAction}
-        className="
-            mt-auto w-full py-2 rounded-full
-            bg-[#8BAD13] text-white font-medium
-            transition-all duration-200 ease-out
-            hover:bg-[#6E8122]
-            hover:shadow-md
-            hover:-translate-y-px
-            active:translate-y-0
-            active:shadow-sm
-            focus:outline-none
-            focus:ring-2 focus:ring-[#8BAD13]/40
-        "
-        >
-        {actionLabel}
-    </button>
+      <div className="mt-auto mx-auto">
+        <button
+            onClick={onAction}
+            className="
+                 w-68 py-2 rounded-full
+                bg-[#8BAD13] text-white font-medium
+                transition-all duration-200 ease-out
+                hover:bg-[#6E8122]
+                hover:shadow-md
+                hover:-translate-y-px
+                active:translate-y-0
+                active:shadow-sm
+                focus:outline-none
+                focus:ring-2 focus:ring-[#8BAD13]/40
+            "
+            >
+            {actionLabel}
+        </button>
+      </div>
+
     </div>
   )
 }

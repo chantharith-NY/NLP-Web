@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Cpu, ClipboardPaste } from "lucide-react"
 
 import TextInputCard from "../../common/TextInputCard"
 import ActionButton from "../../common/ActionButton"
@@ -58,20 +57,22 @@ export default function SpellCheckPage() {
 
             {/* Bottom buttons */}
             <div className="flex justify-between pt-4">
-                <ActionButton
+              {/* Paste */}
+              <ActionButton
                 label="បិទភ្ជាប់"
                 isActive={true}
                 onClick={async () => {
-                    const text = await navigator.clipboard.readText()
-                    setInputText(text)
+                  const text = await navigator.clipboard.readText()
+                  setInputText(text)
                 }}
-                />
+              />
 
-                <ActionButton
+              {/* Execute */}
+              <ActionButton
                 label="ពិនិត្យអក្ខរាវិរុទ្ធ"
                 isActive={inputText.length > 0}
                 onClick={handleSpellCheck}
-                />
+              />
             </div>
         </div>
 
