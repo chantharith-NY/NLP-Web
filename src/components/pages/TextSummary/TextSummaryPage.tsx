@@ -5,6 +5,7 @@ import ActionButton from "../../common/ActionButton"
 import ResultCard from "../../common/ResultCard"
 import StatsBar from "../../common/StatsBar"
 import HeroTitle from "../../common/HeroTitle"
+import LoadingOverlay from "../../common/LoadingOverlay"
 
 import type { SummaryRatio, SummaryFormat } from "../../../types/summarize"
 import type { ModelOption } from "../../../types/model"
@@ -20,6 +21,7 @@ export default function TextSummaryPage() {
   const [inputText, setInputText] = useState("")
   const [result, setResult] = useState("")
   const [bullets, setBullets] = useState<string[]>([])
+  const [executionTimeMs, setExecutionTimeMs] = useState<number | undefined>()
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -42,23 +44,17 @@ export default function TextSummaryPage() {
 
     try {
       setLoading(true)
-      setError(null)
 
       const res = await summarizeService.summarizeText({
         text: inputText,
-        model_id: model!,
-        ratio,
-        format,
+        model_id: Number(model), // IMPORTANT
       })
-
       setResult(res.summary)
+      setExecutionTimeMs(res.execution_time_ms)
 
-      setBullets(
-        res.bullets ??
-        res.summary.split("។").map(s => s.trim()).filter(Boolean)
-      )
     } catch (err) {
-      setError("មានបញ្ហាក្នុងការសង្ខេបអត្ថបទ")
+      console.error(err)
+      alert("មានបញ្ហាក្នុងការសង្ខេបអត្ថបទ")
     } finally {
       setLoading(false)
     }
@@ -74,10 +70,10 @@ export default function TextSummaryPage() {
       : 0
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6 relative">
       {/* Hero */}
       <HeroTitle title="ឧបករណ៍បញ្ញាសិប្បនិម្មិតសង្ខេបអត្ថបទ" />
-
+      {loading && <LoadingOverlay />}
       {/* Two-panel layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {/* LEFT — INPUT */}
@@ -107,7 +103,7 @@ export default function TextSummaryPage() {
           {/* Bottom button */}
           <div className="pt-4 flex justify-start">
             <ActionButton
-              label="សង្ខេបអត្ថបទ"
+              label={loading ? "កំពុងដំណើរការ..." : "សង្ខេបអត្ថបទ"}
               isActive={inputText.length > 0 && !loading}
               onClick={handleTextSummarize}
             />
@@ -123,6 +119,8 @@ export default function TextSummaryPage() {
               format={resultFormat}
               paragraphText={result}
               bulletItems={bullets}
+              executionTimeMs={executionTimeMs}
+              loading={loading}
             />
             {error && (
               <p className="text-red-500 text-sm italic">
@@ -160,7 +158,7 @@ export default function TextSummaryPage() {
         stats={[
           { label: "អក្សរដើម", value: `${originalCharCount} អក្សរ` },
           { label: "អក្សរសង្ខេប", value: `${summarizedCharCount} អក្សរ` },
-          { label: "ភាពត្រឹមត្រូវ", value: `${accuracy}%` },
+          { label: "ភាពសង្ខេប", value: `${accuracy}%` },
         ]}
       />
     </div>

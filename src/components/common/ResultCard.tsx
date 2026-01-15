@@ -5,7 +5,9 @@ interface ResultCardProps {
   format: "paragraph" | "bullet"
   paragraphText?: string
   bulletItems?: string[]
+  executionTimeMs?: number
   onClear?: () => void
+  loading?: boolean
 }
 
 export default function ResultCard({
@@ -13,27 +15,39 @@ export default function ResultCard({
   format,
   paragraphText = "",
   bulletItems = [],
+  executionTimeMs,
   onClear,
+  loading = false,
 }: ResultCardProps) {
   const isEmpty = !paragraphText
 
   return (
     <div className="bg-white px-4">
-      {/* Header – SAME as TextInputCard */}
+      {/* Header */}
       <div className="flex items-center justify-between mb-2">
         <p className="font-semibold font-moul text-xl">
           {title}
         </p>
 
-        {onClear && (
-          <X
-            className="w-4 h-4 cursor-pointer text-gray-500 hover:text-red-500"
-            onClick={onClear}
-          />
-        )}
+        <div className="flex items-center gap-3">
+          {/* Execution time */}
+          {executionTimeMs !== undefined && (
+            <span className="text-xs text-gray-400 font-inter">
+              ⏱ {(executionTimeMs / 1000).toFixed(1)} វិនាទី
+            </span>
+          )}
+
+          {/* Clear */}
+          {onClear && (
+            <X
+              className="w-4 h-4 cursor-pointer text-gray-500 hover:text-red-500"
+              onClick={onClear}
+            />
+          )}
+        </div>
       </div>
 
-      {/* Content box – SAME visual weight as textarea */}
+      {/* Content */}
       <div className="w-full min-h-40 border rounded-md p-3 text-sm text-gray-700">
         {isEmpty ? (
           <p className="text-gray-400 italic">
