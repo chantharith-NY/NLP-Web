@@ -2,22 +2,21 @@ export default function AboutMainSection() {
   return (
     <main className="w-full bg-white">
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-6 py-16 text-center">
-        <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium">
+      <section className="max-w-6xl px-6 py-16">
+        <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#ABCA2C]/30 text-[#4C5918] text-sm font-medium font-sans">
           ⚡ Powered by Advanced AI Technology
         </span>
 
-        <h1 className="mt-6 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-          អ្នកជំនួយការបញ្ញាសិប្បនិម្មិត AI
-        </h1>
-
-        <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          ប្រព័ន្ធជំនួយឆ្លាតវៃដោយប្រើបច្ចេកវិទ្យាបញ្ញាសិប្បនិម្មិត (AI)
-          សម្រាប់ជួយស្រាវជ្រាវ កែសម្រួលអត្ថបទ
-          និងជួយលើកកម្ពស់គុណភាពការសរសេរ និងការសិក្សា។
+        <p className="mt-6 text-3xl md:text-4xl font-bold text-gray-900 leading-tight font-moul">
+          អភិវឌ្ឍសំណេររបស់អ្នកជាមួយ <span className="font-sans">AI</span>
         </p>
 
-        <button className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-700 text-white font-medium hover:bg-green-800 transition">
+        <p className="mt-4 text-black/70 leading-relaxed font-battambang text-lg tracking-wide">
+          រាជបណ្ឌិត្យសភាកម្ពុជា បង្ហាញឧបករណ៍ដំណើរការភាសាដ៏ទូលំទូលាយមួយ ដែលដំណើរការដោយបញ្ញាសិប្បនិម្មិត <span className="font-sans">(AI)</span>។ គម្រោងនេះត្រូវបានរចនាឡើងដើម្បីបង្កើនឧត្តមភាពសិក្សា និងការទំនាក់ទំនងវិជ្ជាជីវៈ។ 
+          វេទិកាឆ្លាតវៃរបស់យើងជួយអ្នកស្រាវជ្រាវ និស្សិត និងអ្នកជំនាញឱ្យសម្រេចបាននូវភាពច្បាស់លាស់ និងភាពជាក់លាក់នៅក្នុងការសរសេររបស់ពួកគេ។
+        </p>
+
+        <button className="bg-[#6E8122] text-white mt-5 px-5 py-1.5 rounded-full text-sm shadow-md">
           ចាប់ផ្តើម →
         </button>
       </section>

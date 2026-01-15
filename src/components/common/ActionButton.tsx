@@ -1,10 +1,28 @@
-import { Pen } from "lucide-react"
+interface ActionButtonProps {
+  label: string
+  isActive?: boolean
+  onClick?: () => void
+  className?: string
+}
 
-export default function ActionButton() {
+export default function ActionButton({
+  label,
+  isActive = false,
+  onClick,
+  className = "",
+}: ActionButtonProps) {
   return (
-    <button className="w-full bg-[#003B77] font-battambang text-white py-3 rounded-xl flex items-center justify-center gap-2 text-lg">
-      <Pen size={18} />
-      សង្ខេបអត្ថបទ
+    <button
+      onClick={onClick}
+      className={`
+        px-3 py-1 rounded-md text-sm border transition font-inter
+        ${isActive
+          ? "bg-[#003B77] text-white border-black"
+          : "hover:bg-[#025FBD] hover:text-white"}
+        ${className}
+      `}
+    >
+      {label}
     </button>
   )
 }

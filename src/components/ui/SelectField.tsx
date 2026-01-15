@@ -47,7 +47,7 @@ export default function SelectField({
   return (
     <div className="relative space-y-1" ref={ref}>
       {label && (
-        <label className="font-semibold text-gray-700">
+        <label className="font-semibold font-battambang">
           {label}
         </label>
       )}
@@ -58,7 +58,7 @@ export default function SelectField({
         onClick={() => setOpen((v) => !v)}
         className="
           w-full flex items-center justify-between
-          border rounded-md px-3 py-2 text-sm
+          border rounded-md px-3 py-2 text-sm mt-2
           bg-white hover:bg-gray-50
           focus:outline-none focus:ring-2 focus:ring-blue-600
         "

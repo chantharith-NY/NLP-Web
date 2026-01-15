@@ -81,6 +81,11 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           to="/tools/text-summary"
           onClick={onClose}
         />
+        <ToolLink
+          text="Spell Check"
+          to="/tools/spell-check"
+          onClick={onClose}
+        />
       </Section>
 
 

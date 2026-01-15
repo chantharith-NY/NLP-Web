@@ -1,27 +1,47 @@
-import { Upload, X } from "lucide-react"
+import { X } from "lucide-react"
 
-export default function TextInputCard() {
+interface TextInputCardProps {
+  title?: string
+  value: string
+  placeholder?: string
+  onChange: (value: string) => void
+  onClear?: () => void
+}
+
+export default function TextInputCard({
+  title = "Khmer Text",
+  value,
+  placeholder = "សូមបញ្ចូលអត្ថបទ...",
+  onChange,
+  onClear,
+}: TextInputCardProps) {
   return (
-    <div className="bg-white rounded-xl shadow p-4">
+    <div className="bg-white px-4">
+      {/* Header */}
       <div className="flex items-center justify-between mb-2">
-        <h3 className="font-semibold font-inria-serif text-xl">Khmer Text</h3>
-        <X className="w-4 h-4 cursor-pointer text-gray-500" />
+        <h3 className="font-semibold font-inter text-xl">
+          {title}
+        </h3>
+
+        {onClear && (
+          <X
+            className="w-4 h-4 cursor-pointer text-gray-500 hover:text-red-500"
+            onClick={onClear}
+          />
+        )}
       </div>
 
+      {/* Textarea */}
       <textarea
-        placeholder="សូមបញ្ចូលអត្ថបទ..."
-        className="w-full h-40 resize-none border rounded-md p-3 text-sm outline-none"
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full h-40 resize-none border rounded-md p-3 text-sm outline-none focus:ring-2 focus:ring-blue-300"
       />
 
-      <div className="flex justify-between mt-3">
-        <button className="font-semibold text-[#003B77] border px-4 py-1.5 rounded-md text-sm hover:bg-[#025FBD] hover:text-white">
-          Summarize
-        </button>
-
-        <button className="font-semibold text-[#003B77] flex items-center gap-2 border px-4 py-1.5 rounded-md text-sm hover:bg-[#025FBD] hover:text-white">
-          <Upload size={16} />
-          Upload File
-        </button>
+      {/* Character count */}
+      <div className="text-right text-xs text-gray-400 mt-1">
+        {value.length} characters
       </div>
     </div>
   )

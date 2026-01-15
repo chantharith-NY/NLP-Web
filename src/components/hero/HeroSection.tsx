@@ -37,7 +37,7 @@ export default function HeroSection() {
                 flex items-center justify-center gap-2
             "
             >
-            <i className="fa-regular fa-compass text-2xl relative top-[1px]"></i>
+            <i className="fa-regular fa-compass text-2xl relative top-px"></i>
             <span>ស្វែងយល់បន្ថែម</span>
         </button>
     </section>
