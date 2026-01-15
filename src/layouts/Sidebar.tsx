@@ -1,12 +1,15 @@
 import { Menu } from 'lucide-react';
 import { Link, useLocation } from "react-router-dom"
 
+import HistoryList from '../components/sidebar/HistoryList';
+
 interface SidebarProps {
   open: boolean
   onClose: () => void
 }
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
+  
   return (
     <>
       {/* Overlay (mobile only) */}
@@ -84,9 +87,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
 
       {/* History */}
       <Section title="ប្រវត្តិ">
-        <HistoryItem />
-        <HistoryItem />
-        <HistoryItem />
+        <HistoryList />
       </Section>
 
       {/* Tools */}
@@ -157,11 +158,11 @@ function Section({
   )
 }
 
-function HistoryItem() {
-  return (
-    <div className="h-4 rounded bg-[#D9D9D9]" />
-  )
-}
+// function HistoryItem() {
+//   return (
+//     <div className="h-4 rounded bg-[#D9D9D9]" />
+//   )
+// }
 
 function FooterLink({
   text,

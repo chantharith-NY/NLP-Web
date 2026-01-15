@@ -7,7 +7,6 @@ interface ResultCardProps {
   bulletItems?: string[]
   executionTimeMs?: number
   onClear?: () => void
-  loading?: boolean
 }
 
 export default function ResultCard({
@@ -17,7 +16,6 @@ export default function ResultCard({
   bulletItems = [],
   executionTimeMs,
   onClear,
-  loading = false,
 }: ResultCardProps) {
   const isEmpty = !paragraphText
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import TextInputCard from "../../common/TextInputCard"
 import SummaryOptions from "../../common/SummaryOptions"
 import ActionButton from "../../common/ActionButton"
@@ -7,27 +7,26 @@ import StatsBar from "../../common/StatsBar"
 import HeroTitle from "../../common/HeroTitle"
 import LoadingOverlay from "../../common/LoadingOverlay"
 
-import type { SummaryRatio, SummaryFormat } from "../../../types/summarize"
-import type { ModelOption } from "../../../types/model"
+import { useSummarize } from "../../../hooks/useSummarize"
 import { modelService } from "../../../services/model.service"
-import { summarizeService } from "../../../services/summarize.service"
+import type { SummaryFormat, SummaryRatio } from "../../../types/summarize"
+import type { ModelOption } from "../../../types/model"
 
 export default function TextSummaryPage() {
   const [models, setModels] = useState<ModelOption[]>([])
   const [model, setModel] = useState<number | null>(null)
   const [ratio, setRatio] = useState<SummaryRatio>("30%")
   const [format, setFormat] = useState<SummaryFormat>("paragraph")
-
   const [inputText, setInputText] = useState("")
-  const [result, setResult] = useState("")
-  const [bullets, setBullets] = useState<string[]>([])
-  const [executionTimeMs, setExecutionTimeMs] = useState<number | undefined>()
 
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-
-  const resultFormat: "paragraph" | "bullet" =
-    format === "bullet" ? "bullet" : "paragraph"
+  const {
+    run,
+    reset,
+    loading,
+    summary,
+    executionTimeMs,
+    error,
+  } = useSummarize()
 
   useEffect(() => {
     const loadModels = async () => {
@@ -39,35 +38,22 @@ export default function TextSummaryPage() {
     loadModels()
   }, [])
 
-  const handleTextSummarize = async () => {
-    if (!inputText.trim()) return
+  const resultFormat: "paragraph" | "bullet" =
+    format === "bullet" ? "bullet" : "paragraph"
 
-    try {
-      setLoading(true)
+  const bullets = 
+    format === "bullet"
+      ? summary.split("។").filter(Boolean)
+      : []
 
-      const res = await summarizeService.summarizeText({
-        text: inputText,
-        model_id: Number(model), // IMPORTANT
-      })
-      setResult(res.summary)
-      setExecutionTimeMs(res.execution_time_ms)
-
-    } catch (err) {
-      console.error(err)
-      alert("មានបញ្ហាក្នុងការសង្ខេបអត្ថបទ")
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  // Statistics (character-based, consistent)
   const originalCharCount = inputText.length
-  const summarizedCharCount = result.length
-
+  const summarizedCharCount = summary.length
   const accuracy =
     originalCharCount > 0
       ? Math.round((summarizedCharCount / originalCharCount) * 100)
       : 0
+
+
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 relative">
@@ -85,7 +71,7 @@ export default function TextSummaryPage() {
               onChange={setInputText}
               onClear={() => {
                 setInputText("")
-                setResult("")
+                reset()
               }}
             />
 
@@ -105,7 +91,10 @@ export default function TextSummaryPage() {
             <ActionButton
               label={loading ? "កំពុងដំណើរការ..." : "សង្ខេបអត្ថបទ"}
               isActive={inputText.length > 0 && !loading}
-              onClick={handleTextSummarize}
+              onClick={() => {
+                if (!model) return
+                run(inputText, model)
+              }}
             />
           </div>
         </div>
@@ -117,10 +106,9 @@ export default function TextSummaryPage() {
             <ResultCard
               title="លទ្ធផលសង្ខេប"
               format={resultFormat}
-              paragraphText={result}
+              paragraphText={summary}
               bulletItems={bullets}
               executionTimeMs={executionTimeMs}
-              loading={loading}
             />
             {error && (
               <p className="text-red-500 text-sm italic">
@@ -146,8 +134,8 @@ export default function TextSummaryPage() {
             </div>
             <ActionButton
               label="ចម្លងលទ្ធផល"
-              isActive={result.length > 0}
-              onClick={() => navigator.clipboard.writeText(result)}
+              isActive={summary.length > 0}
+              onClick={() => navigator.clipboard.writeText(summary)}
             />
           </div>
         </div>
