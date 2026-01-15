@@ -1,31 +1,44 @@
-import { Cpu } from "lucide-react"
-import { useState } from "react"
+// import { Cpu } from "lucide-react"
 import SelectField from "../ui/SelectField"
 import OptionCard from "./OptionCard"
-import type {
-  SummaryModel,
-  SummaryRatio,
-  SummaryFormat,
-} from "../../types/types"
 
-export default function SummaryOptions() {
-  const [model, setModel] = useState<SummaryModel>("khmer-t5")
-  const [ratio, setRatio] = useState<SummaryRatio>("30%")
-  const [format, setFormat] = useState<SummaryFormat>("paragraph")
+import type { SummaryRatio, SummaryFormat } from "../../types/summarize"
+import type { ModelOption } from "../../types/model"
 
+interface SummaryOptionsProps {
+  models: ModelOption[]
+
+  model: number | null
+  ratio: SummaryRatio
+  format: SummaryFormat
+
+  onModelChange: (value: number) => void
+  onRatioChange: (value: SummaryRatio) => void
+  onFormatChange: (value: SummaryFormat) => void
+}
+
+export default function SummaryOptions({
+  models,
+  model,
+  ratio,
+  format,
+  onModelChange,
+  onRatioChange,
+  onFormatChange,
+}: SummaryOptionsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {/* Model */}
       <OptionCard>
         <SelectField
           label="ម៉ូឌែល"
-          value={model}
-          onChange={setModel}
-          icon={<Cpu size={16} />}
-          options={[
-            { label: "Khmer T5", value: "khmer-t5" },
-            { label: "mT5", value: "mt5" },
-          ]}
+          value={model?model.toString():""}
+          onChange={(value) => onModelChange(Number(value))}
+          // icon={<Cpu size={16} />}
+          options={models.map((m) => ({
+            label: m.name,
+            value: m.id.toString(),
+          }))}
         />
       </OptionCard>
 
@@ -34,7 +47,7 @@ export default function SummaryOptions() {
         <SelectField
           label="អត្រាសង្ខេប"
           value={ratio}
-          onChange={setRatio}
+          onChange={onRatioChange}
           options={[
             { label: "10%", value: "10%" },
             { label: "20%", value: "20%" },
@@ -50,7 +63,7 @@ export default function SummaryOptions() {
         <SelectField
           label="ទម្រង់"
           value={format}
-          onChange={setFormat}
+          onChange={onFormatChange}
           options={[
             { label: "អត្ថបទ", value: "paragraph" },
             { label: "ចំណុច", value: "bullet" },

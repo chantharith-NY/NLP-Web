@@ -1,8 +1,17 @@
 import { api } from "./api"
+import type {
+  SummarizeRequest,
+  SummarizeResponse,
+} from "../types/summarize"
 
-export function summarizeText(payload: {
-  text: string
-  model_id: number
-}) {
-  return api.post("/text-summarize", payload)
+export const summarizeService = {
+  async summarizeText(
+    payload: SummarizeRequest
+  ): Promise<SummarizeResponse> {
+    const { data } = await api.post<SummarizeResponse>(
+      "/summarize",
+      payload
+    )
+    return data
+  },
 }
