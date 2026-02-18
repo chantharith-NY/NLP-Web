@@ -3,7 +3,7 @@ import type { ModelOption } from "../types/model"
 
 export const modelService = {
   async getSpellCheckModels(): Promise<ModelOption[]> {
-    const { data } = await api.get("/models?type=spell_check")
+    const { data } = await api.get("/public/models?type=spell_check")
 
     return data.map((m: any) => ({
       id: m.id,
@@ -13,7 +13,7 @@ export const modelService = {
   },
 
   async getSummaryModels(): Promise<ModelOption[]> {
-    const { data } = await api.get("/models?type=summarization")
+    const { data } = await api.get("/public/models?type=summarization")
 
     return data.map((m: any) => ({
       id: m.id,

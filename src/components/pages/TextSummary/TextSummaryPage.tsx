@@ -1,59 +1,50 @@
-import { useEffect, useState } from "react"
-import TextInputCard from "../../common/TextInputCard"
-import SummaryOptions from "../../common/SummaryOptions"
-import ActionButton from "../../common/ActionButton"
-import ResultCard from "../../common/ResultCard"
-import StatsBar from "../../common/StatsBar"
-import HeroTitle from "../../common/HeroTitle"
-import LoadingOverlay from "../../common/LoadingOverlay"
+import { useEffect, useState } from "react";
+import TextInputCard from "../../common/TextInputCard";
+import SummaryOptions from "../../common/SummaryOptions";
+import ActionButton from "../../common/ActionButton";
+import ResultCard from "../../common/ResultCard";
+import StatsBar from "../../common/StatsBar";
+import HeroTitle from "../../common/HeroTitle";
+import LoadingOverlay from "../../common/LoadingOverlay";
 
-import { useSummarize } from "../../../hooks/useSummarize"
-import { modelService } from "../../../services/model.service"
-import type { SummaryFormat, SummaryRatio } from "../../../types/summarize"
-import type { ModelOption } from "../../../types/model"
+import { useSummarize } from "../../../hooks/useSummarize";
+import { modelService } from "../../../services/model.service";
+import type { SummaryFormat, SummaryRatio } from "../../../types/summarize";
+import type { ModelOption } from "../../../types/model";
 
 export default function TextSummaryPage() {
-  const [models, setModels] = useState<ModelOption[]>([])
-  const [model, setModel] = useState<number | null>(null)
-  const [ratio, setRatio] = useState<SummaryRatio>("30%")
-  const [format, setFormat] = useState<SummaryFormat>("paragraph")
-  const [inputText, setInputText] = useState("")
+  const [models, setModels] = useState<ModelOption[]>([]);
+  const [model, setModel] = useState<number | null>(null);
+  const [ratio, setRatio] = useState<SummaryRatio>("30%");
+  const [format, setFormat] = useState<SummaryFormat>("paragraph");
+  const [inputText, setInputText] = useState("");
 
-  const {
-    run,
-    reset,
-    loading,
-    summary,
-    executionTimeMs,
-    error,
-  } = useSummarize()
+  const MAX_CHAR_LIMIT = 5000;
+
+  const { run, reset, loading, summary, executionTimeMs, error } =
+    useSummarize();
 
   useEffect(() => {
     const loadModels = async () => {
-      const data = await modelService.getSummaryModels()
-      setModels(data)
-      setModel(data[0]?.id ?? null)
-    }
+      const data = await modelService.getSummaryModels();
+      setModels(data);
+      setModel(data[0]?.id ?? null);
+    };
 
-    loadModels()
-  }, [])
+    loadModels();
+  }, []);
 
   const resultFormat: "paragraph" | "bullet" =
-    format === "bullet" ? "bullet" : "paragraph"
+    format === "bullet" ? "bullet" : "paragraph";
 
-  const bullets = 
-    format === "bullet"
-      ? summary.split("។").filter(Boolean)
-      : []
+  const bullets = format === "bullet" ? summary.split("។").filter(Boolean) : [];
 
-  const originalCharCount = inputText.length
-  const summarizedCharCount = summary.length
+  const originalCharCount = inputText.length;
+  const summarizedCharCount = summary.length;
   const accuracy =
     originalCharCount > 0
       ? Math.round((summarizedCharCount / originalCharCount) * 100)
-      : 0
-
-
+      : 0;
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 relative">
@@ -69,9 +60,10 @@ export default function TextSummaryPage() {
             <TextInputCard
               value={inputText}
               onChange={setInputText}
+              maxLength={MAX_CHAR_LIMIT}
               onClear={() => {
-                setInputText("")
-                reset()
+                setInputText("");
+                reset();
               }}
             />
 
@@ -87,15 +79,24 @@ export default function TextSummaryPage() {
           </div>
 
           {/* Bottom button */}
-          <div className="pt-4 flex justify-start">
+          <div className="pt-4 flex justify-start items-center gap-4">
             <ActionButton
               label={loading ? "កំពុងដំណើរការ..." : "សង្ខេបអត្ថបទ"}
-              isActive={inputText.length > 0 && !loading}
+              isActive={
+                inputText.length > 0 &&
+                inputText.length <= MAX_CHAR_LIMIT &&
+                !loading
+              }
               onClick={() => {
-                if (!model) return
-                run(inputText, model)
+                if (!model || inputText.length > MAX_CHAR_LIMIT) return;
+                run(inputText, model);
               }}
             />
+            {inputText.length > MAX_CHAR_LIMIT && (
+              <p className="text-red-600 text-sm font-battambang">
+                ⚠️ អត្ថបទលើសពីដែនកំណត់ ({MAX_CHAR_LIMIT})
+              </p>
+            )}
           </div>
         </div>
 
@@ -110,11 +111,7 @@ export default function TextSummaryPage() {
               bulletItems={bullets}
               executionTimeMs={executionTimeMs}
             />
-            {error && (
-              <p className="text-red-500 text-sm italic">
-                {error}
-              </p>
-            )}
+            {error && <p className="text-red-500 text-sm italic">{error}</p>}
           </div>
 
           {/* Bottom button */}
@@ -150,5 +147,5 @@ export default function TextSummaryPage() {
         ]}
       />
     </div>
-  )
+  );
 }
