@@ -10,6 +10,7 @@ export const summarizeService = {
       "/summarize",
       payload
     )
+    console.log("Summarization response:", data)
     console.log("Summarization response:", data.execution_time_ms, "ms")
     return data
   },
