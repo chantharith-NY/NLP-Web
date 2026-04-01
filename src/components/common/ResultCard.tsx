@@ -46,7 +46,7 @@ export default function ResultCard({
       </div>
 
       {/* Content */}
-      <div className="w-full min-h-40 border rounded-md p-3 text-sm text-gray-700">
+      <div className="w-full min-h-40 max-h-64 overflow-y-auto border rounded-md p-3 text-sm text-gray-700 scrollbar-thin">
         {isEmpty ? (
           <p className="text-gray-400 italic">
             លទ្ធផលនឹងបង្ហាញនៅទីនេះ

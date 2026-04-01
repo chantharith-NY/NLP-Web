@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
 import Sidebar from "./Sidebar"
@@ -8,6 +8,14 @@ import Footer from "./Footer"
 export default function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation()
+
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
+  }, [sidebarOpen])
 
   return (
     <div className="relative min-h-screen">

@@ -9,7 +9,7 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
-  
+
   return (
     <>
       {/* Overlay (mobile only) */}
@@ -27,116 +27,117 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           w-[320px] md:w-87.5 min-h-screen
           bg-[#8BAD13] text-white
           transform transition-transform duration-300
+          overflow-y-auto
           ${open ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0
         `}
       >
-      {/* Header / Logo */}
-      <div className="px-6 pt-6 pb-4">
-        <div className="flex items-center justify-between">
-          {/* Logo + Text (Clickable → Home) */}
-          <Link
-            to="/"
-            onClick={onClose}
-            className="flex items-center gap-3 cursor-pointer group"
-          >
-            <img
-              src="/rac-logo.png"
-              alt="RAC Logo"
-              className="w-13"
-            />
+        {/* Header / Logo */}
+        <div className="px-6 pt-6 pb-4">
+          <div className="flex items-center justify-between">
+            {/* Logo + Text (Clickable → Home) */}
+            <Link
+              to="/"
+              onClick={onClose}
+              className="flex items-center gap-3 cursor-pointer group"
+            >
+              <img
+                src="/rac-logo.png"
+                alt="RAC Logo"
+                className="w-13"
+              />
 
-            <div className="grid grid-rows-2 text-left space-y-1">
-              <p className="text-white font-semibold text-sm font-moulpali group-hover:text-gray-200">
-                រាជបណ្ឌិត្យសភាកម្ពុជា
-              </p>
-              <p className="text-white font-semibold text-xs font-inria-serif group-hover:text-gray-200">
-                Royal Academy of Cambodia
-              </p>
-            </div>
-          </Link>
+              <div className="grid grid-rows-2 text-left space-y-1">
+                <p className="text-white font-semibold text-sm font-moulpali group-hover:text-gray-200">
+                  រាជបណ្ឌិត្យសភាកម្ពុជា
+                </p>
+                <p className="text-white font-semibold text-xs font-inria-serif group-hover:text-gray-200">
+                  Royal Academy of Cambodia
+                </p>
+              </div>
+            </Link>
 
-          {/* Menu Button */}
-          <button
-            onClick={onClose}
-            className="group focus:outline-none"
-          >
-            <Menu
-              className="
+            {/* Menu Button */}
+            <button
+              onClick={onClose}
+              className="group focus:outline-none"
+            >
+              <Menu
+                className="
                 text-white ml-4 mr-4
                 transition-colors duration-200
                 group-hover:text-gray-300
                 active:text-gray-400
               "
-            />
-          </button>
+              />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Welcome */}
-      <div className="px-6 mt-4">
-        <p className="text-lg font-moul">សូមស្វាគមន៍</p>
-        <div className="h-px bg-white/50 mt-2 mb-4" />
+        {/* Welcome */}
+        <div className="px-6 mt-4">
+          <p className="text-lg font-moul">សូមស្វាគមន៍</p>
+          <div className="h-px bg-white/50 mt-2 mb-4" />
 
-        {/* Cards */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="h-24 rounded-xl bg-[#F3FFD4]" />
-          <div className="h-24 rounded-xl bg-[#F3FFD4]" />
+          {/* Cards */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="h-24 rounded-xl bg-[#F3FFD4]" />
+            <div className="h-24 rounded-xl bg-[#F3FFD4]" />
+          </div>
         </div>
-      </div>
 
-      {/* History */}
-      <Section title="ប្រវត្តិ">
-        <HistoryList />
-      </Section>
+        {/* History */}
+        <Section title="ប្រវត្តិ">
+          <HistoryList />
+        </Section>
 
-      {/* Tools */}
-      <Section title="ឧបករណ៍">
-        <ToolLink
-          text="សង្ខេបអត្ថបទ"
-          to="/tools/text-summary"
-          onClick={onClose}
-        />
-        <ToolLink
-          text="ពិនិត្យអក្ខរាវិរុទ្ធ"
-          to="/tools/spell-check"
-          onClick={onClose}
-        />
-      </Section>
+        {/* Tools */}
+        <Section title="ឧបករណ៍">
+          <ToolLink
+            text="សង្ខេបអត្ថបទ"
+            to="/tools/text-summary"
+            onClick={onClose}
+          />
+          <ToolLink
+            text="ពិនិត្យអក្ខរាវិរុទ្ធ"
+            to="/tools/spell-check"
+            onClick={onClose}
+          />
+        </Section>
 
 
-      {/* Footer */}
-      <div className="mt-auto px-6 pb-6">
-        <FooterLink text="ទំព័រដើម" to="/" onClick={onClose} />
-        <FooterLink text="អំពីពួកយើង" to="/about" onClick={onClose} />
-        {/* <FooterLink text="ទំនាក់ទំនង" to="/contact" onClick={onClose} /> */}
+        {/* Footer */}
+        <div className="mt-auto px-6 pb-6">
+          <FooterLink text="ទំព័រដើម" to="/" onClick={onClose} />
+          <FooterLink text="អំពីពួកយើង" to="/about" onClick={onClose} />
+          {/* <FooterLink text="ទំនាក់ទំនង" to="/contact" onClick={onClose} /> */}
 
-        <div className="flex gap-4 mt-4 text-lg">
-          <a
-            href="https://t.me/yourusername"
-            target="_blank"
-            className="text-white hover:text-[#229ED9] transition cursor-pointer"
-          >
-            <i className="fa-brands fa-telegram"></i>
-          </a>
+          <div className="flex gap-4 mt-4 text-lg">
+            <a
+              href="https://t.me/yourusername"
+              target="_blank"
+              className="text-white hover:text-[#229ED9] transition cursor-pointer"
+            >
+              <i className="fa-brands fa-telegram"></i>
+            </a>
 
-          <a
-            href="https://facebook.com/yourpage"
-            target="_blank"
-            className="text-white hover:text-[#1877F2] transition cursor-pointer"
-          >
-            <i className="fa-brands fa-facebook"></i>
-          </a>
+            <a
+              href="https://facebook.com/yourpage"
+              target="_blank"
+              className="text-white hover:text-[#1877F2] transition cursor-pointer"
+            >
+              <i className="fa-brands fa-facebook"></i>
+            </a>
 
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            className="text-white hover:text-black transition cursor-pointer"
-          >
-            <i className="fa-brands fa-github"></i>
-          </a>
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              className="text-white hover:text-black transition cursor-pointer"
+            >
+              <i className="fa-brands fa-github"></i>
+            </a>
+          </div>
         </div>
-      </div>
       </aside>
     </>
   )

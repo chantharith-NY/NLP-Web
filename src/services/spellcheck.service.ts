@@ -8,10 +8,14 @@ export const spellCheckService = {
   async checkText(
     payload: SpellCheckRequest
   ): Promise<SpellCheckResponse> {
-    const response = await api.post<SpellCheckResponse>(
+    const { data } = await api.post<SpellCheckResponse>(
       "/spell-check",
       payload
     )
-    return response.data
+
+    console.log("SpellCheck response:", data)
+    console.log("SpellCheck execution time:", data.execution_time_ms, "ms")
+
+    return data
   },
 }
