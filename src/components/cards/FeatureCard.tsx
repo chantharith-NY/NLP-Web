@@ -1,3 +1,5 @@
+// import { Link } from "react-router-dom"
+
 interface FeatureCardProps {
   title: string
   description: string
@@ -36,19 +38,19 @@ export default function FeatureCard({
 
         {href && (
           <a
-            href={href}
-            className="
-              absolute top-3 right-3
-              w-9 h-9
-              rounded-full
-              bg-white
-              flex items-center justify-center
-              shadow
-              hover:bg-gray-100
-            "
-          >
-            ↗
-          </a>
+          href={href}
+          className="
+            absolute top-3 right-3
+            w-9 h-9
+            rounded-full
+            bg-white
+            flex items-center justify-center
+            shadow
+            hover:bg-gray-100
+          "
+        >
+          ↗
+        </a>
         )}
       </div>
 
